@@ -1,10 +1,10 @@
 proxies:
-  - name: Proxy-Server      # 节点名称（自定义）
+  - name: "Proxy-Server"      # 节点名称（自定义）
     type: ss               # 固定为 Shadowsocks 类型
     server: 45.192.99.189    # 服务器地址
     port: 8388             # 端口号
     cipher: aes-256-gcm    # 加密方式
-    password: "hTFn7A3SrWm5"
+    password: "hTFn7A3SrWm5" 
 
 proxy-groups:
   - name: "PROXY"          # 策略组名称
@@ -3566,5 +3566,5 @@ rules:
   - DOMAIN-SUFFIX,mini-ksa.com,PROXY
   - DOMAIN-SUFFIX,elizabethmontagunetwork.ac.uk,PROXY
   - GEOIP,CN,DIRECT
-  - DST-PORT,8388,Proxy
+  - DST-PORT,443,Proxy
   - MATCH,Proxy  # 必须放在最后
