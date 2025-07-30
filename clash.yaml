@@ -1,5 +1,5 @@
 proxies:
-  - name: "Proxy-Server"      # 节点名称（自定义）
+  - name: "SS_Server"      # 节点名称（自定义）
     type: ss               # 固定为 Shadowsocks 类型
     server: 45.192.99.189    # 服务器地址
     port: 8388             # 端口号
@@ -7,11 +7,15 @@ proxies:
     password: "hTFn7A3SrWm5" 
 
 proxy-groups:
-  - name: "PROXY"          # 策略组名称
+  - name: "Proxy"          # 策略组名称
     type: select
     proxies:
-      - Proxy-Server          # 关联上方节点
-      - DIRECT
+      - SS_Server          # 关联上方节点
+  - name: "Domestic"
+    type: select
+    proxies:
+      - DIRECT              #直连
+     
 
 rules:
   - RULE-SET,applications,DIRECT
