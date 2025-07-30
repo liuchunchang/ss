@@ -1,6 +1,5 @@
-# clash.yaml 完整版
 mixed-port: 7890
-allow-lan: false
+allow-lan: true
 mode: rule
 log-level: info
 
@@ -17,15 +16,6 @@ proxy-groups:
     type: select
     proxies:
       - SS_Server
-      - DIRECT
-
-  - name: "AUTO"
-    type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    proxies:
-      - SS_Server
-
 rules:
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
