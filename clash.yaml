@@ -1,14 +1,39 @@
+# clash.yaml 完整版
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+
 proxies:
-  - name: "SS_Server"      # 节点名称（自定义）
-    type: ss               # 固定为 Shadowsocks 类型
-    server: 45.192.99.189    # 服务器地址
-    port: 8388             # 端口号
-    cipher: aes-256-gcm    # 加密方式
-    password: "hTFn7A3SrWm5" 
+  - name: "SS_Server"
+    type: ss
+    server: 45.192.99.189
+    port: 8388
+    cipher: aes-256-gcm
+    password: "hTFn7A3SrWm5"
 
 proxy-groups:
-  - name: "Proxy"          # 策略组名称
+  - name: "PROXY"
     type: select
     proxies:
-      - SS_Server          # 关联上方节点
-     
+      - SS_Server
+      - DIRECT
+
+  - name: "AUTO"
+    type: url-test
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    proxies:
+      - SS_Server
+
+rules:
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
+  - GEOIP,CN,DIRECT
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-SUFFIX,youtube.com,PROXY
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - DOMAIN-KEYWORD,spotify,PROXY
+  - DOMAIN-SUFFIX,ad.com,REJECT
+  - MATCH,PROXY
