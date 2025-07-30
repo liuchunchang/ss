@@ -3,12 +3,8 @@ proxies:
     type: ss               # 固定为 Shadowsocks 类型
     server: 45.192.99.189    # 服务器地址
     port: 8388             # 端口号
-    cipher: aes-256-gcm    # 加密方式
+    cipher: chacha20-ietf-poly1305    # 加密方式
     password: "hTFn7A3SrWm5"
-    udp: true              # 启用 UDP 转发（可选）
-    plugin: obfs           # 混淆插件（若启用）
-    plugin-opts:
-      mode: tls            # 混淆模式（如 tls/http）
 
 proxy-groups:
   - name: "PROXY"          # 策略组名称
