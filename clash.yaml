@@ -18,22 +18,49 @@ proxy-groups:
       - DIRECT                                        # 优先直连
       - SS_Server                                     # 直连超时后切换至此
     url: "http://connect.rom.miui.com/generate_204"   # 测试地址（需可访问）
-    interval: 600                                     # 每5分钟测试一次
-    tolerance: 300                                    # 延迟超过150ms视为超时
+    interval: 600                                     # 每10分钟测试一次
+    tolerance: 200                                    # 延迟超过200ms视为超时
     lazy: true                                        # 仅在需要时测试（节省资源）
 
 rules:
- # 国内域名/IP直连,超时切代理
+ # 国内域名/IP直连
   - DOMAIN-SUFFIX,baidu.com,DIRECT
   - DOMAIN-SUFFIX,qq.com,DIRECT
-  - DOMAIN-KEYWORD,weibo.com,DIRECT
-  - DOMAIN-KEYWORD,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,weibo.com,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,deepseek.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,douyin.com,DIRECT
+  - DOMAIN-SUFFIX,sohu.com,DIRECT
+  - DOMAIN-SUFFIX,bob.com,DIRECT
+  - DOMAIN-SUFFIX,12306.com,DIRECT
+  - DOMAIN-SUFFIX,haokan.com,DIRECT
+  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+  - DOMAIN-SUFFIX,sogou.com,DIRECT
+  - DOMAIN-SUFFIX,pinduoduo.com,DIRECT
+  - DOMAIN-SUFFIX,1688.com,DIRECT
+  - DOMAIN-SUFFIX,baicizhan.com,DIRECT
+  - DOMAIN-SUFFIX,meituan.com,DIRECT
+  - DOMAIN-SUFFIX,amap.com,DIRECT
+  - DOMAIN-SUFFIX,csdn.net,DIRECT
+  - DOMAIN-SUFFIX,gitee.com,DIRECT
+  - DOMAIN-SUFFIX,runoob.com,DIRECT
+  - DOMAIN-SUFFIX,quark.cn,DIRECT
+  - DOMAIN-SUFFIX,bing.com,DIRECT
+  - DOMAIN-SUFFIX,xunlei.com,DIRECT
+  - DOMAIN-SUFFIX,qidian.com,DIRECT
+  - DOMAIN-SUFFIX,163.com,DIRECT
+  - DOMAIN-SUFFIX,kugou.com,DIRECT
+  - DOMAIN-SUFFIX,zhihu.com,DIRECT
+  - DOMAIN-SUFFIX,cnblogs.com,DIRECT
   - GEOIP,CN,DIRECT                                   # 国内IP直连(需配合GeoIP数据库)
 
   #  国外域名强制走代理
   - DOMAIN-SUFFIX,google.com,SS_Server
   - DOMAIN-SUFFIX,youtube.com,SS_Server
   - DOMAIN-SUFFIX,twitter.com,SS_Server
+  - DOMAIN-SUFFIX,github.com,SS_Server
 
   # 兜底规则
   - MATCH,AUTO_PROXY                                  # 未匹配的流量默认走代理
