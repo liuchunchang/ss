@@ -18,15 +18,16 @@ proxy-groups:
       - DIRECT                                        # 优先直连
       - SS_Server                                     # 直连超时后切换至此
     url: "http://connect.rom.miui.com/generate_204"   # 测试地址（需可访问）
-    interval: 300                                     # 每5分钟测试一次
+    interval: 6000                                     # 每100分钟测试一次
     tolerance: 300                                    # 延迟超过150ms视为超时
     lazy: true                                        # 仅在需要时测试（节省资源）
 
 rules:
  # 国内域名/IP直连,超时切代理
-  - DOMAIN-SUFFIX,baidu.com,AUTO_PROXY
-  - DOMAIN-SUFFIX,qq.com,AUTO_PROXY
-  - DOMAIN-KEYWORD,weibo,AUTO_PROXY
+  - DOMAIN-SUFFIX,baidu.com,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-KEYWORD,weibo.com,DIRECT
+  - DOMAIN-KEYWORD,alipay.com,DIRECT
   - GEOIP,CN,DIRECT                                   # 国内IP直连(需配合GeoIP数据库)
 
   #  国外域名强制走代理
