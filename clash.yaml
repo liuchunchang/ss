@@ -19,7 +19,7 @@ proxy-groups:
       - SS_Server                                     # 直连超时后切换至此
     url: "http://connect.rom.miui.com/generate_204"   # 测试地址（需可访问）
     interval: 300                                     # 每5分钟测试一次
-    tolerance: 150                                    # 延迟超过150ms视为超时
+    tolerance: 300                                    # 延迟超过150ms视为超时
     lazy: true                                        # 仅在需要时测试（节省资源）
 
 rules:
