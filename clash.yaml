@@ -1,29 +1,38 @@
 mixed-port: 7890
-allow-lan: true
+allow-lan: true                                       # 是否应许局域网代理
 mode: rule
 log-level: info
 
 proxies:
   - name: "SS_Server"
     type: ss
-    server: 45.192.99.189
-    port: 8388
-    cipher: aes-256-gcm
-    password: "hTFn7A3SrWm5"
+    server: 45.192.99.189                             # 服务器地址
+    port: 8388                                        # 服务器端口号
+    cipher: aes-256-gcm                               # 加密方式
+    password: "hTFn7A3SrWm5"                          # 密码
 
 proxy-groups:
-  - name: "PROXY"
-    type: select
+  - name: "AUTO_PROXY"
+    type: fallback                                    # 核心:fallback 按顺序测试节点可用性
     proxies:
-      - SS_Server
+      - DIRECT                                        # 优先直连
+      - SS_Server                                     # 直连超时后切换至此
+    url: "http://connect.rom.miui.com/generate_204"   # 测试地址（需可访问）
+    interval: 300                                     # 每5分钟测试一次
+    tolerance: 150                                    # 延迟超过150ms视为超时
+    lazy: true                                        # 仅在需要时测试（节省资源）
+
 rules:
-  - DOMAIN,clash.razord.top,DIRECT
-  - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
-  - GEOIP,CN,DIRECT
-  - DOMAIN-SUFFIX,cn,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,google.com,PROXY
-  - DOMAIN-KEYWORD,spotify,PROXY
-  - DOMAIN-SUFFIX,ad.com,REJECT
-  - MATCH,PROXY
+ # 国内域名/IP直连,超时切代理
+  - DOMAIN-SUFFIX,baidu.com,AUTO_PROXY
+  - DOMAIN-SUFFIX,qq.com,AUTO_PROXY
+  - DOMAIN-KEYWORD,weibo,AUTO_PROXY
+  - GEOIP,CN,DIRECT                                   # 国内IP直连(需配合GeoIP数据库)
+
+  #  国外域名强制走代理
+  - DOMAIN-SUFFIX,google.com,SS_Server
+  - DOMAIN-SUFFIX,youtube.com,SS_Server
+  - DOMAIN-SUFFIX,twitter.com,SS_Server
+
+  # 兜底规则
+  - MATCH,AUTO_PROXY                                  # 未匹配的流量默认走代理
