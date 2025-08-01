@@ -24,10 +24,10 @@ proxy-groups:
 
 rules:
  # 国内域名/IP直连,超时切代理
-  - DOMAIN-SUFFIX,baidu.com,DIRECT
-  - DOMAIN-SUFFIX,qq.com,DIRECT
-  - DOMAIN-KEYWORD,weibo.com,DIRECT
-  - DOMAIN-KEYWORD,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,baidu.com,AUTO_PROXY
+  - DOMAIN-SUFFIX,qq.com,AUTO_PROXY
+  - DOMAIN-KEYWORD,weibo.com,AUTO_PROXY
+  - DOMAIN-KEYWORD,alipay.com,AUTO_PROXY
   - GEOIP,CN,DIRECT                                   # 国内IP直连(需配合GeoIP数据库)
 
   #  国外域名强制走代理
