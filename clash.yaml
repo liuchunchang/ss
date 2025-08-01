@@ -31,9 +31,9 @@ rules:
   - GEOIP,CN,DIRECT                                   # 国内IP直连(需配合GeoIP数据库)
 
   #  国外域名强制走代理
-  - DOMAIN-SUFFIX,google.com,AUTO_PROXY
-  - DOMAIN-SUFFIX,youtube.com,AUTO_PROXY
-  - DOMAIN-SUFFIX,twitter.com,AUTO_PROXY
+  - DOMAIN-SUFFIX,google.com,SS_Server
+  - DOMAIN-SUFFIX,youtube.com,SS_Server
+  - DOMAIN-SUFFIX,twitter.com,SS_Server
 
   # 兜底规则
   - MATCH,AUTO_PROXY                                  # 未匹配的流量默认走代理
