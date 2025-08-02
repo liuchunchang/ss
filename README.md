@@ -1,2 +1,2 @@
-# ss
-测试
+# Clash订阅
+clash的规则

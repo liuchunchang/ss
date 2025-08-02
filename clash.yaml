@@ -54,6 +54,11 @@ rules:
   - DOMAIN-SUFFIX,kugou.com,DIRECT
   - DOMAIN-SUFFIX,zhihu.com,DIRECT
   - DOMAIN-SUFFIX,cnblogs.com,DIRECT
+  - DOMAIN-SUFFIX,juejin.com,DIRECT
+  - DOMAIN-SUFFIX,segmentfault.com,DIRECT
+  - DOMAIN-SUFFIX,huaweicloud.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,cnki.net,DIRECT
   - GEOIP,CN,DIRECT                                   # 国内IP直连(需配合GeoIP数据库)
 
   #  国外域名强制走代理
@@ -61,6 +66,12 @@ rules:
   - DOMAIN-SUFFIX,youtube.com,SS_Server
   - DOMAIN-SUFFIX,twitter.com,SS_Server
   - DOMAIN-SUFFIX,github.com,SS_Server
+  - DOMAIN-SUFFIX,hackster.io,SS_Server
+  - DOMAIN-SUFFIX,stackoverflow.com,SS_Server
+  - DOMAIN-SUFFIX,dygod.net,SS_Server
+  - DOMAIN-SUFFIX,mvnrepository.com,SS_Server
+  - DOMAIN-SUFFIX,webjars.org,SS_Server
+  - DOMAIN-SUFFIX,pub.dev,SS_Server
 
   # 兜底规则
   - MATCH,AUTO_PROXY                                  # 未匹配的流量默认走代理
